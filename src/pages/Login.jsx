@@ -93,10 +93,14 @@ export default function Login() {
       });
   }
 
+  const handleKeyDown = (e, callback) => {
+    if (e.key === 'Enter') callback();
+  };
+
   return (
     <article>
       <div className="login-container">
-        <form className="login-form">
+        <form className="login-form" onKeyDown={(e) => handleKeyDown(e, signIn)}> 
           <div className="login-input">
             <label htmlFor="username">Mailinizi Giriniz</label>
             <input type="text" id="username" placeholder="ali.veli@idu.edu.tr" required className="login-username" />
@@ -106,7 +110,7 @@ export default function Login() {
             <input type="password" id="password" placeholder="*********" required className="login-password" />
           </div>
           <div className="login-input">
-            <input type="button" id="confirm" value="Giriş Yap" onClick={signIn} />
+            <input type="button" id="confirm" value="Giriş Yap" onClick={signIn}/>
           </div>
         </form>
       </div>

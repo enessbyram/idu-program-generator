@@ -86,16 +86,16 @@ export default function Home() {
   const handleFormSubmit = async () => {
     const teacher = await getCurrentTeacherInfo();
     if (!teacher) return;
-  
+
     const dersKodu = formValues.dersKodu.toUpperCase();
     const prefix = getPrefixFromKod(dersKodu);
     const entryCollection = prefixToCollection[prefix];
-  
+
     if (!entryCollection) {
       alert("Geçersiz ders kodu!");
       return;
     }
-  
+
     if (editingEntry) {
       await db
         .collection("Izmir Demokrasi Universitesi")
@@ -110,7 +110,7 @@ export default function Home() {
           expectedStudent: formValues.expectedStudent,
           timestamp: new Date()
         });
-  
+
       alert("Kayıt güncellendi 🔁");
     } else {
       await db
@@ -128,12 +128,12 @@ export default function Home() {
           email: teacher.mail,
           timestamp: new Date()
         });
-  
+
       alert("Kayıt başarılı 🎉");
     }
-  
+
     await fetchTeacherEntries(teacher.mail);
-  
+
     setFormValues({ dersKodu: '', dersSaati: '', expectedStudent: '' });
     setSeciliKod('');
     setEditingEntry(null);
@@ -206,10 +206,14 @@ export default function Home() {
     }
   };
 
+  const handleKeyDown = (e, callback) => {
+    if (e.key === 'Enter') callback();
+  };
+
   return (
     <div className="home">
       <div className="entry-part">
-        <form className="home-form">
+        <form className="home-form"  onKeyDown={(e) => handleKeyDown(e, handleFormSubmit)}>
           <div className="home-input">
             <label htmlFor="dersKodu">Ders Kodu:</label>
             <input

@@ -7,18 +7,15 @@ import { getAuth, reauthenticateWithCredential, EmailAuthProvider, updatePasswor
 export default function UpdatePassword() {
     const navigate = useNavigate();
 
-    // Formda kullanılan state'ler
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const auth = getAuth();
 
-    // Şifre güncelleme fonksiyonu
     const handleUpdatePassword = async (e) => {
         e.preventDefault();
 
-        // Yeni şifrelerin eşleşip eşleşmediğini kontrol et
         if (newPassword !== confirmPassword) {
             Swal.fire({
                 icon: 'error',
@@ -30,13 +27,10 @@ export default function UpdatePassword() {
 
         const user = auth.currentUser;
 
-        // Kullanıcının mevcut şifresini doğrulamak için kimlik bilgisi oluştur
         const credential = EmailAuthProvider.credential(user.email, currentPassword);
 
         try {
-            // Mevcut şifreyi doğrulama
             await reauthenticateWithCredential(user, credential);
-            // Yeni şifreyi güncelleme
             await updatePassword(user, newPassword);
 
             Swal.fire({
@@ -44,11 +38,9 @@ export default function UpdatePassword() {
                 title: 'Şifre başarıyla güncellendi.',
                 showConfirmButton: true
             });
-            // Profil sayfasına yönlendirme
             navigate('/profile');
         } catch (error) {
             let errorMessage = 'Şifre değiştirilemedi!';
-            // Hata mesajlarını özelleştirme
             if (error.code === 'auth/wrong-password') {
                 errorMessage = 'Mevcut şifreniz yanlış!';
             }

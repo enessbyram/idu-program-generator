@@ -82,7 +82,7 @@ export default function Header() {
         <header>
             <div className="logo">
                 <img
-                    src="img/IDU_LOGO.png"
+                    src="/img/IDU_LOGO.png"
                     alt="logo"
                     onClick={handleLogoClick}
                     style={{ cursor: 'pointer' }}
