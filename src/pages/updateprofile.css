@@ -1,0 +1,48 @@
+.updateprofile {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.updateprofile-form {
+    width: 40%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 150px;
+}
+
+.updateprofile-input {
+    width: 75%;
+}
+
+.updateprofile-input label {
+    font-weight: bold;
+}
+
+.updateprofile-input input {
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: #fff;
+    width: 100%;
+    margin: 10px 0 15px 0; 
+}
+
+#update {
+    cursor: pointer;
+    width: 50%;
+}
+
+.updateprofile-form>.updateprofile-input:nth-last-of-type(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,32 @@
+.showprogram-container {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.showprogram-table {
+    border: collapse;
+    width: 1000px;
+    height: 500px;
+    font-size: 10px;
+}
+
+.showprogram-table thead {
+    border: 1px solid;
+    font-weight: bold;
+}
+
+.showprogram-table tbody {
+    border: 1px solid;
+}
+
+.showprogram-table td {
+    border: 1px solid;
+}
+
+.showprogram-table td tr {
+    border: 1px solid;
+    padding: 5px;
+}

@@ -1,0 +1,116 @@
+.home {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.entry-part {
+    width: 50%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.result-part {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px 0 20px;
+    height: 100%;
+}
+
+table {
+    padding: 10px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    width: 25%;
+    padding: 5px;
+    text-align: center;
+}
+
+tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+td {
+    text-align: center;
+    padding: 10px;
+}
+
+.home-form {
+    width: 80%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.home-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 85%;
+    margin: 10px;
+    padding: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.home-input label {
+    font-weight: bold;
+    width: 25%;
+    margin-bottom: 10px;
+}
+
+.home-input input {
+    width: 75%;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 15px;
+}
+
+.home-form>.home-input:nth-last-of-type(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.dropdown li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown li:hover {
+    background-color: #f0f0f0;
+}
+
+#kayit:hover {
+    border: none;
+    background-color: #ccc;
+    color: #242424
+}
+
+#kayit {
+    transition: all 0.3s ease;
+    font-weight: bold;
+}

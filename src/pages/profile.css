@@ -1,0 +1,56 @@
+.profile {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-form {
+    width: 40%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 150px;
+}
+
+.profile-input {
+    width: 75%;
+}
+
+.profile-input label {
+    font-weight: bold;
+}
+
+.profile-input input {
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: #fff;
+    width: 100%;
+    margin: 10px 0 15px 0; 
+}
+
+#update {
+    cursor: pointer;
+    width: 50%;
+    font-weight: bold;
+    transition: 0.3s all ease;
+}
+
+form>.profile-input:nth-last-of-type(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#update:hover {
+    background-color: #ccc;
+    color: #242424;
+    border: none;
+}
