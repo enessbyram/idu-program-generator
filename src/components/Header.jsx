@@ -82,7 +82,7 @@ export default function Header() {
         <header>
             <div className="logo">
                 <img
-                    src="/img/IDU_LOGO.png"
+                    src="https://github.com/enessbyram/idu-program-generator/blob/main/public/img/IDU_LOGO.png?raw=true"
                     alt="logo"
                     onClick={handleLogoClick}
                     style={{ cursor: 'pointer' }}
