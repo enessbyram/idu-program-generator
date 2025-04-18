@@ -18,7 +18,8 @@ export default function Login() {
     return () => unsubscribe();
   }, [navigate]);
 
-  function signIn() {
+  function signIn(e) {
+    e.preventDefault()
     const email = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
 
@@ -93,14 +94,10 @@ export default function Login() {
       });
   }
 
-  const handleKeyDown = (e, callback) => {
-    if (e.key === 'Enter') callback();
-  };
-
   return (
     <article>
       <div className="login-container">
-        <form className="login-form" onKeyDown={(e) => handleKeyDown(e, signIn)}> 
+        <form className="login-form" onSubmit={signIn}> 
           <div className="login-input">
             <label htmlFor="username">Mailinizi Giriniz</label>
             <input type="text" id="username" placeholder="ali.veli@idu.edu.tr" required className="login-username" />
@@ -110,7 +107,7 @@ export default function Login() {
             <input type="password" id="password" placeholder="*********" required className="login-password" />
           </div>
           <div className="login-input">
-            <input type="button" id="confirm" value="Giriş Yap" onClick={signIn}/>
+            <input type="submit" id="confirm" value="Giriş Yap" onClick={signIn}/>
           </div>
         </form>
       </div>

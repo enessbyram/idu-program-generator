@@ -83,7 +83,8 @@ export default function Home() {
     setEntries(allEntries);
   }, [prefixToCollection]);
 
-  const handleFormSubmit = async () => {
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
     const teacher = await getCurrentTeacherInfo();
     if (!teacher) return;
 
@@ -206,14 +207,10 @@ export default function Home() {
     }
   };
 
-  const handleKeyDown = (e, callback) => {
-    if (e.key === 'Enter') callback();
-  };
-
   return (
     <div className="home">
       <div className="entry-part">
-        <form className="home-form"  onKeyDown={(e) => handleKeyDown(e, handleFormSubmit)}>
+        <form className="home-form" onSubmit={handleFormSubmit}>
           <div className="home-input">
             <label htmlFor="dersKodu">Ders Kodu:</label>
             <input
@@ -256,7 +253,7 @@ export default function Home() {
           </div>
           <div className="home-input">
             <input
-              type="button"
+              type="submit"
               id='kayit'
               value="Kaydet"
               style={{ cursor: "pointer" }}
