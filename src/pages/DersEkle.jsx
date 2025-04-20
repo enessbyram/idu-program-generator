@@ -9,7 +9,9 @@ export default function Home() {
   const [tumDersler, setTumDersler] = useState({});
   const [seciliKod, setSeciliKod] = useState('');
   const [seciliAd, setSeciliAd] = useState('');
+  const [donemler, setDonemler] = useState([]);
   const [formValues, setFormValues] = useState({
+    donem: '2025 - 2026 Güz Dönemi',
     dersKodu: '',
     dersSaati: '',
     expectedStudent: ''
@@ -23,6 +25,36 @@ export default function Home() {
     );
     return match || null;
   };
+
+  useEffect(() => {
+    const fetchDonemler = async () => {
+      try {
+        // Entries dökümanını alıyoruz
+        const docRef = await db
+          .collection("Izmir Demokrasi Universitesi")
+          .doc("Faculties")
+          .collection("MuhendislikFac")
+          .doc("Entries")
+          .get();
+  
+        if (docRef.exists) {
+          const data = docRef.data();
+          
+          // Döküman içindeki field'ları alıyoruz
+          const donemAdlari = Object.values(data) || [];
+          
+          console.log("Firestore'dan gelen dönemler:", donemAdlari);
+          setDonemler(donemAdlari);
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Dönemleri çekerken hata oluştu:", error);
+      }
+    };
+  
+    fetchDonemler();
+  }, []);
 
   const prefixToCollection = useMemo(() => ({
     BME: "BiyomedikalMuh",
@@ -63,6 +95,10 @@ export default function Home() {
   };
 
   const fetchTeacherEntries = useCallback(async (email) => {
+    if (!formValues.donem) {
+      return;
+    }
+
     const allEntries = [];
 
     for (let col of Object.values(prefixToCollection)) {
@@ -70,6 +106,8 @@ export default function Home() {
         .collection("Izmir Demokrasi Universitesi")
         .doc("Faculties")
         .collection("MuhendislikFac")
+        .doc("Entries")
+        .collection(formValues.donem)
         .doc("Entries")
         .collection(col)
         .where("email", "==", email)
@@ -81,7 +119,7 @@ export default function Home() {
     }
 
     setEntries(allEntries);
-  }, [prefixToCollection]);
+  }, [prefixToCollection, formValues.donem]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
@@ -97,11 +135,18 @@ export default function Home() {
       return;
     }
 
+    if (!formValues.donem) {
+      alert("Lütfen bir dönem seç!");
+      return;
+    }
+
     if (editingEntry) {
       await db
         .collection("Izmir Demokrasi Universitesi")
         .doc("Faculties")
         .collection("MuhendislikFac")
+        .doc("Entries")
+        .collection(formValues.donem)
         .doc("Entries")
         .collection(editingEntry.bolum)
         .doc(editingEntry.id)
@@ -118,6 +163,8 @@ export default function Home() {
         .collection("Izmir Demokrasi Universitesi")
         .doc("Faculties")
         .collection("MuhendislikFac")
+        .doc("Entries")
+        .collection(formValues.donem)
         .doc("Entries")
         .collection(entryCollection)
         .add({
@@ -194,6 +241,8 @@ export default function Home() {
         .doc("Faculties")
         .collection("MuhendislikFac")
         .doc("Entries")
+        .collection(formValues.donem)
+        .doc("Entries")
         .collection(entry.bolum)
         .doc(entry.id)
         .delete();
@@ -211,6 +260,23 @@ export default function Home() {
     <div className="home">
       <div className="entry-part">
         <form className="home-form" onSubmit={handleFormSubmit}>
+          <div className="home-input">
+            <label htmlFor="donem">Dönem Seçiniz:</label>
+            <input
+              type="text"
+              id="donem"
+              list="tumDonemler"
+              value={formValues.donem}
+              onChange={(e) =>
+                setFormValues({ ...formValues, donem: e.target.value })
+              }
+            />
+            <datalist id="tumDonemler">
+              {donemler.map((donem, index) => (
+                <option key={index} value={donem} />
+              ))}
+            </datalist>
+          </div>
           <div className="home-input">
             <label htmlFor="dersKodu">Ders Kodu:</label>
             <input
