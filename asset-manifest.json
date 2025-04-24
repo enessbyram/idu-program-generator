@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/idu-program-generator/static/css/main.febb460c.css",
-    "main.js": "/idu-program-generator/static/js/main.b8f05129.js",
+    "main.css": "/idu-program-generator/static/css/main.d6fde2d8.css",
+    "main.js": "/idu-program-generator/static/js/main.3f042cec.js",
     "index.html": "/idu-program-generator/index.html",
-    "main.febb460c.css.map": "/idu-program-generator/static/css/main.febb460c.css.map",
-    "main.b8f05129.js.map": "/idu-program-generator/static/js/main.b8f05129.js.map"
+    "main.d6fde2d8.css.map": "/idu-program-generator/static/css/main.d6fde2d8.css.map",
+    "main.3f042cec.js.map": "/idu-program-generator/static/js/main.3f042cec.js.map"
   },
   "entrypoints": [
-    "static/css/main.febb460c.css",
-    "static/js/main.b8f05129.js"
+    "static/css/main.d6fde2d8.css",
+    "static/js/main.3f042cec.js"
   ]
 }
