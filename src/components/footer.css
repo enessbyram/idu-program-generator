@@ -5,7 +5,19 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    position: fixed;
     bottom: 0;
 }
 
+@media only screen and (max-width: 768px) {
+    footer {
+        font-size: 10px;
+        padding: 20px;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    footer {
+        font-size: 10px;
+        padding: 40px;
+    }
+}

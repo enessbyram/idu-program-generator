@@ -46,3 +46,19 @@
     justify-content: center;
     align-items: center;
 }
+
+@media only screen and (max-width: 768px) {
+    .updateprofile-input {
+        font-size: 13px;
+    }
+
+    .updateprofile-input input {
+        width: 200px;
+        font-size: 13px;
+    }
+
+    #update {
+        width: 200px;
+        font-size: 12px;
+    }
+}

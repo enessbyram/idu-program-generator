@@ -116,3 +116,32 @@ td {
     font-weight: bold;
 }
 
+@media only screen and (max-width: 1280px) {
+    .home {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .entry-part {
+        width: 100%;
+        border-bottom: 1px solid #242424;
+        font-size: 13px;
+    }
+
+    .home-input input {
+        font-size: 10px;
+    }
+
+    .result-part {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+    }
+
+    .result-part table {
+        font-size: 12px;
+        margin-bottom: 50px;
+    }
+}

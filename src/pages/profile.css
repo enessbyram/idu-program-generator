@@ -19,6 +19,8 @@
 
 .profile-input {
     width: 75%;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-input label {
@@ -33,7 +35,7 @@
     border: 1px solid #ccc;
     color: #fff;
     width: 100%;
-    margin: 10px 0 15px 0; 
+    margin: 10px 0 15px 0;
 }
 
 #update {
@@ -53,4 +55,40 @@ form>.profile-input:nth-last-of-type(1) {
     background-color: #ccc;
     color: #242424;
     border: none;
+}
+
+@media only screen and (max-width: 1280px) {
+    .profile-input {
+        font-size: 14px;
+    }
+
+    .profile-input input {
+        font-size: 12px;
+        width: 100%;
+    }
+
+    form>.profile-input:nth-last-of-type(1) {
+        display: flex;
+    }
+
+    .profile-input #update {
+        width: 100%;
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .profile-input {
+        font-size: 14px;
+    }
+
+    .profile-input input {
+        font-size: 12px;
+        width: 200px;
+    }
+
+    .profile-input #update {
+        width: 100%;
+        font-size: 10px;
+    }
 }

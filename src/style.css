@@ -8,10 +8,11 @@
 body {
     background: linear-gradient(120deg, #161313, #01012d);
     color: #ccc;
-    height: 100vh;
-    overflow: hidden;
+    height: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-height: 100vh;
 }
 

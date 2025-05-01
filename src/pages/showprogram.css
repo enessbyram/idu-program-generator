@@ -53,3 +53,26 @@
     color: #fff;
     font-size: 15px;
 }
+
+@media only screen and (max-width: 1280px) {
+    .showprogram-input {
+        font-size: 13px;
+        margin-top: 20px;
+    }
+
+    .showprogram-input input {
+        height: 30px;
+        font-size: 13px;
+    }
+
+    .showprogram-container {
+        width: auto;
+        height: auto;
+    }
+
+    .showprogram-table {
+        width: auto;
+        overflow: auto;
+        height: auto;
+    }
+}
