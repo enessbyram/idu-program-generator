@@ -11,7 +11,7 @@ export default function Home() {
   const [seciliAd, setSeciliAd] = useState('');
   const [donemler, setDonemler] = useState([]);
   const [formValues, setFormValues] = useState({
-    donem: '2025 - 2026 Güz Dönemi',
+    donem: '',
     dersKodu: '',
     dersSaati: '',
     expectedStudent: ''
@@ -29,7 +29,6 @@ export default function Home() {
   useEffect(() => {
     const fetchDonemler = async () => {
       try {
-        // Entries dökümanını alıyoruz
         const docRef = await db
           .collection("Izmir Demokrasi Universitesi")
           .doc("Faculties")
@@ -40,7 +39,6 @@ export default function Home() {
         if (docRef.exists) {
           const data = docRef.data();
           
-          // Döküman içindeki field'ları alıyoruz
           const donemAdlari = Object.values(data) || [];
           
           console.log("Firestore'dan gelen dönemler:", donemAdlari);
@@ -56,20 +54,22 @@ export default function Home() {
     fetchDonemler();
   }, []);
 
-  const prefixToCollection = useMemo(() => ({
-    BME: "BiyomedikalMuh",
-    EEE: "ElektrikElektronikMuh",
-    CIV: "InsaatMuh",
-    IE: "EndustriMuh",
-    MAC: "MakineMuh"
-  }), []);
+const prefixToCollection = useMemo(() => ({
+  BME: "BiyomedikalMuh",
+  EEE: "ElektrikElektronikMuh",
+  CIV: "InsaatMuh",
+  IE: "EndustriMuh",
+  MAC: "MakineMuh",
+  USEC: "UniElectiveCourse"
+}), []);
 
   const dersDokumanlari = useMemo(() => [
     db.collection("Izmir Demokrasi Universitesi").doc("Faculties").collection("MuhendislikFac").doc("Muhendislik").collection("Biyomedikal").doc("BiyomedikalDers"),
     db.collection("Izmir Demokrasi Universitesi").doc("Faculties").collection("MuhendislikFac").doc("Muhendislik").collection("İnsaat").doc("İnsaatDers"),
     db.collection("Izmir Demokrasi Universitesi").doc("Faculties").collection("MuhendislikFac").doc("Muhendislik").collection("Makine").doc("MakineDers"),
     db.collection("Izmir Demokrasi Universitesi").doc("Faculties").collection("MuhendislikFac").doc("Muhendislik").collection("ElektrikElektronik").doc("ElektrikElektronikDers"),
-    db.collection("Izmir Demokrasi Universitesi").doc("Faculties").collection("MuhendislikFac").doc("Muhendislik").collection("Endustri").doc("EndustriDers")
+    db.collection("Izmir Demokrasi Universitesi").doc("Faculties").collection("MuhendislikFac").doc("Muhendislik").collection("Endustri").doc("EndustriDers"),
+    db.collection("Izmir Demokrasi Universitesi").doc("Faculties").collection("MuhendislikFac").doc("Muhendislik").collection("USEC").doc("USEC")
   ], []);
 
   const getCurrentTeacherInfo = async () => {
@@ -173,7 +173,9 @@ export default function Home() {
           hocaAdi: teacher.name,
           hocaSoyadi: teacher.surname,
           hocaTitle: teacher.title,
+          hocaField: teacher.field,
           email: teacher.mail,
+          donem: formValues.donem,
           timestamp: new Date()
         });
 
@@ -182,7 +184,7 @@ export default function Home() {
 
     await fetchTeacherEntries(teacher.mail);
 
-    setFormValues({ dersKodu: '', dersSaati: '', expectedStudent: '' });
+    setFormValues({ dersKodu: '', dersSaati: '', expectedStudent: '', donem: ''});
     setSeciliKod('');
     setEditingEntry(null);
   };
@@ -263,14 +265,21 @@ export default function Home() {
           <div className="home-input">
             <label htmlFor="donem">Dönem Seçiniz:</label>
             <input
-              type="text"
-              id="donem"
-              list="tumDonemler"
-              value={formValues.donem}
-              onChange={(e) =>
-                setFormValues({ ...formValues, donem: e.target.value })
-              }
-            />
+  type="text"
+  id="donem"
+  list="tumDonemler"
+  value={formValues.donem}
+  onChange={(e) =>
+    setFormValues({ ...formValues, donem: e.target.value })
+  }
+  onBlur={(e) => {
+    const girilenDonem = e.target.value;
+    const donemGecerliMi = donemler.includes(girilenDonem);
+    if (!donemGecerliMi) {
+      setFormValues({ ...formValues, donem: "" });
+    }
+  }}
+/>
             <datalist id="tumDonemler">
               {donemler.map((donem, index) => (
                 <option key={index} value={donem} />

@@ -72,6 +72,15 @@ export default function Profile() {
           />
         </div>
         <div className="profile-input">
+          <label htmlFor="field">Field:</label>
+          <input
+            id="field"
+            type="text"
+            readOnly
+            placeholder={matchedTeacher ? matchedTeacher.field : ""}
+          />
+        </div>
+        <div className="profile-input">
           <input
             id="update"
             type="button"
