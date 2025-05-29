@@ -76,3 +76,8 @@
         height: auto;
     }
 }
+
+#program-olustur-btn {
+    margin-left: 15px;
+    height: 40px;
+}

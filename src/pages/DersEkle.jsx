@@ -35,12 +35,12 @@ export default function Home() {
           .collection("MuhendislikFac")
           .doc("Entries")
           .get();
-  
+
         if (docRef.exists) {
           const data = docRef.data();
-          
+
           const donemAdlari = Object.values(data) || [];
-          
+
           console.log("Firestore'dan gelen dönemler:", donemAdlari);
           setDonemler(donemAdlari);
         } else {
@@ -50,18 +50,18 @@ export default function Home() {
         console.error("Dönemleri çekerken hata oluştu:", error);
       }
     };
-  
+
     fetchDonemler();
   }, []);
 
-const prefixToCollection = useMemo(() => ({
-  BME: "BiyomedikalMuh",
-  EEE: "ElektrikElektronikMuh",
-  CIV: "InsaatMuh",
-  IE: "EndustriMuh",
-  MAC: "MakineMuh",
-  USEC: "UniElectiveCourse"
-}), []);
+  const prefixToCollection = useMemo(() => ({
+    BME: "BiyomedikalMuh",
+    EEE: "ElektrikElektronikMuh",
+    CIV: "InsaatMuh",
+    IE: "EndustriMuh",
+    MAC: "MakineMuh",
+    USEC: "UniElectiveCourse"
+  }), []);
 
   const dersDokumanlari = useMemo(() => [
     db.collection("Izmir Demokrasi Universitesi").doc("Faculties").collection("MuhendislikFac").doc("Muhendislik").collection("Biyomedikal").doc("BiyomedikalDers"),
@@ -184,7 +184,7 @@ const prefixToCollection = useMemo(() => ({
 
     await fetchTeacherEntries(teacher.mail);
 
-    setFormValues({ dersKodu: '', dersSaati: '', expectedStudent: '', donem: ''});
+    setFormValues({ dersKodu: '', dersSaati: '', expectedStudent: '', donem: '' });
     setSeciliKod('');
     setEditingEntry(null);
   };
@@ -265,25 +265,27 @@ const prefixToCollection = useMemo(() => ({
           <div className="home-input">
             <label htmlFor="donem">Dönem Seçiniz:</label>
             <input
-  type="text"
-  id="donem"
-  list="tumDonemler"
-  value={formValues.donem}
-  onChange={(e) =>
-    setFormValues({ ...formValues, donem: e.target.value })
-  }
-  onBlur={(e) => {
-    const girilenDonem = e.target.value;
-    const donemGecerliMi = donemler.includes(girilenDonem);
-    if (!donemGecerliMi) {
-      setFormValues({ ...formValues, donem: "" });
-    }
-  }}
-/>
+              type="text"
+              id="donem"
+              list="tumDonemler"
+              value={formValues.donem}
+              onChange={(e) =>
+                setFormValues({ ...formValues, donem: e.target.value })
+              }
+              onBlur={(e) => {
+                const girilenDonem = e.target.value;
+                const donemGecerliMi = donemler.includes(girilenDonem);
+                if (!donemGecerliMi) {
+                  setFormValues({ ...formValues, donem: "" });
+                }
+              }}
+            />
             <datalist id="tumDonemler">
-              {donemler.map((donem, index) => (
-                <option key={index} value={donem} />
-              ))}
+              {[...donemler]
+                .sort((a, b) => a.localeCompare(b, 'tr', { numeric: true }))
+                .map((donem, index) => (
+                  <option key={index} value={donem} />
+                ))}
             </datalist>
           </div>
           <div className="home-input">
