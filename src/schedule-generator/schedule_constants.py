@@ -14,7 +14,7 @@ SLOTS = [
     ("Lesson XI", "18:00", "18:45")
 ]
 
-AVAILABLE_SLOT_INDEXES = list(range(2, 11))
+AVAILABLE_SLOT_INDEXES = list(range(1, 11))
 
 ROOMS = {
     "A202": 60,
@@ -29,9 +29,8 @@ ROOMS = {
 
 def is_valid_day_for_course(course_code, day):
     if course_code.startswith("USEC"):
-        return day in ["Cuma"]
+        return day == "Cuma"
     elif course_code.startswith("FORM"):
         return day in ["Pazartesi", "Cuma"]
     else:
-        return day in ["Salı", "Çarşamba", "Perşembe"]
-    
+        return day in ["Salı", "Çarşamba", "Perşembe", "Pazartesi", "Cuma"]

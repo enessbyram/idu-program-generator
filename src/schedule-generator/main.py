@@ -2,6 +2,7 @@ from fetch_lessons import get_all_lessons
 from scheduler import schedule_lessons
 from scheduler import save_schedule_as_json
 from scheduler import check_schedule_conflicts
+from scheduler import print_empty_slots
 
 def remove_timestamps(schedule):
     for key, entry in schedule.items():
@@ -22,4 +23,5 @@ if __name__ == "__main__":
     remove_timestamps(final_schedule)
     check_schedule_conflicts(final_schedule)
     save_schedule_as_json(final_schedule)
+    # print_empty_slots(final_schedule)
     print("📁 JSON dosyası oluşturuldu: final_schedule.json")
