@@ -1,6 +1,6 @@
 {
   "homepage": "https://enessbyram.github.io/talos",
-  "name": "idu-program-generator",
+  "name": "talos",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
