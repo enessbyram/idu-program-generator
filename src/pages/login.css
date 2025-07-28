@@ -10,9 +10,9 @@ article {
     border-radius: 15px;
     height: 400px;
     width: 30%;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
     border: 1px solid;
-    box-shadow: 10px 10px 20px 5px rgba(247, 247, 247, 0.1)
+    box-shadow: 10px 10px 20px 5px rgba(247, 247, 247, 0.1);
 }
 
 .login-form {

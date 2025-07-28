@@ -31,6 +31,6 @@ def is_valid_day_for_course(course_code, day):
     if course_code.startswith("USEC"):
         return day == "Cuma"
     elif course_code.startswith("FORM"):
-        return day in ["Pazartesi", "Cuma"]
+        return day in ["Pazartesi"]
     else:
         return day in ["Salı", "Çarşamba", "Perşembe", "Pazartesi", "Cuma"]
